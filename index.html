@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>HelpDesk</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      background: #007bff;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: white;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+
+    nav ul li a:hover {
+      color: #ddd;
+    }
+
+    /* ===== CONTEÚDO ===== */
+    .container {
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #search {
+      display: block;
+      margin: 0 auto 20px auto;
+      padding: 12px;
+      width: 80%;
+      max-width: 500px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    #count {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .post {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .post:hover {
+      transform: translateY(-3px);
+    }
+
+    .post h2 {
+      margin-top: 0;
+      font-size: 1.4em;
+      color: #007bff;
+    }
+
+    .post p {
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .tags {
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 4px 8px;
+      margin: 2px;
+      border-radius: 12px;
+      font-size: 0.75em;
+    }
+
+    .error {
+      text-align: center;
+      color: red;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+
+    /* Esconder seções */
+    .page {
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">HelpDesk</div>
+    <ul>
+      <li><a href="#" onclick="showPage('release')">Release</a></li>
+      <li><a href="#" onclick="showPage('dicas')">Dicas</a></li>
+      <li><a href="#" onclick="showPage('info')">Info</a></li>
+    </ul>
+  </nav>
+
+  <!-- CONTEÚDO -->
+  <div class="container">
+
+    <!-- Página RELEASE (Blog) -->
+    <section id="release" class="page active">
+      <h1>Release</h1>
+      <input type="text" id="search" placeholder="Pesquisar posts...">
+      <div id="count">0 posts encontrados</div>
+      <div class="posts" id="postsGrid"></div>
+    </section>
+
+    <!-- Página DICAS -->
+    <section id="dicas" class="page">
+      <h1>Dicas</h1>
+      <p>Aqui você pode compartilhar dicas úteis.</p>
+    </section>
+
+    <!-- Página INFO -->
+    <section id="info" class="page">
+      <h1>Info</h1>
+      <p>Informações gerais ou sobre você/empresa.</p>
+    </section>
+  </div>
+
+  <script>
+    // Alternar páginas
+    function showPage(pageId) {
+      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+      document.getElementById(pageId).classList.add("active");
+    }
+
+    // RELEASE (Blog)
+    const postsGrid = document.getElementById("postsGrid");
+    const searchInput = document.getElementById("search");
+    const count = document.getElementById("count");
+    let posts = [];
+
+    function normalize(text){
+      return text.toLowerCase()
+                 .normalize("NFD")
+                 .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    async function loadPosts() {
+      try {
+        const res = await fetch("posts.json");
+        if (!res.ok) {
+          throw new Error(`Erro HTTP: ${res.status}`);
+        }
+        const data = await res.json();
+
+        postsGrid.innerHTML = "";
+        posts = data.map(post => {
+          const el = document.createElement("article");
+          el.className = "post";
+          el.dataset.tags = post.tags.join(",");
+          el.innerHTML = `
+            <div class="tags">${post.tags.map(t => `<span class='tag'>${t}</span>`).join('')}</div>
+            <h2>${post.title}</h2>
+            <p>${post.content}</p>
+          `;
+          el.dataset.search = normalize(`${post.title} ${post.content} ${post.tags.join(" ")}`);
+          postsGrid.appendChild(el);
+          return el;
+        });
+        updateCount();
+      } catch (error) {
+        postsGrid.innerHTML = `<p class="error">⚠ Erro ao carregar posts.json: ${error.message}</p>`;
+        console.error("Erro ao carregar posts.json:", error);
+      }
+    }
+
+    function updateCount() {
+      const visible = posts.filter(p => p.style.display !== "none").length;
+      count.textContent = `${visible} post${visible !== 1 ? "s" : ""} encontrado${visible !== 1 ? "s" : ""}`;
+    }
+
+    searchInput.addEventListener("input", () => {
+      const q = normalize(searchInput.value);
+      posts.forEach(post => {
+        post.style.display = post.dataset.search.includes(q) ? "" : "none";
+      });
+      updateCount();
+    });
+
+    loadPosts();
+  </script>
+</body>
+</html>

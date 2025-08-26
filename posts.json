@@ -1,0 +1,93 @@
+[
+  {
+    "title": "Versão .61 BeerSales / Finance",
+    "content": "🪲 Bug\nBS-1455 Campo \"DELETED\" na tabela PRODUCAO_EQUIPAMENTO_OCUP não é atualizado ao excluir ocupação de equipamento da produção\nBS-1469 Texto ultrapassando o limite do card no sidebar do mapa no cadastro da carga\nBS-1478 Destacar que a mensagem rejeitada da Nota Fiscal é da SEFAZ\nBS-1487 Perda de conexão com o banco de dados no emissor NF-e\nBS-1492 Definir limite de caracteres no campo \"*Qtde\" no cadastro da produção\nBS-1493 Erro \"is not a valid integer value\" ao perder conexão na aba Regras de Tributação\n\n📖 História\nBS-1118 Enviar imagens das exceptions para o S3\nBS-1411 Adicionar campos CAD_USER e UP_USER tabela MARCAS\nBS-1479 Informar versão ao enviar exception para a Central E-Get\nBS-1481 Criar mensagem de confirmação ao salvar cargas para definir o status \"A entregar\"\nBS-1482 Criar nova coluna na grid de cargas \"Pedidos entregues\"\nBS-1485 Ajustar ordenamento das colunas na grid de pedidos da carga\nBS-1490 Realizar melhorias nos relatórios de romaneio de carga\nBS-1496 Implementar visualização de documentos do pedido na grid de detalhes da carga\nBS-1498 Adicionar botão \"Ver mais\" na tela de roteiro da carga\nBS-1508 Adicionar tempo e distancia na definição de rota das cargas\nBS-1514 Melhorar o preenchimento da descrição na conciliação bancária do banco Sicredi\nBS-1530 Exibir nome fantasia no campo \"Correntista\" da conta bancária\n\n🛠️Tarefa\nBS-1431 Tratar emissão síncrona de lote de NF-e com apenas uma nota\nBS-1432 Adicionar município de Boa Esperança do Norte (MT)\nBS-1461 Dropar campos SMTP descontinuados da tabela EMPRESA\nBS-1497 Remover uso da \"central antiga\" (firebird) nos sistemas",
+    "tags": [
+      "BeerSales / Finance"
+    ]
+  },
+
+  {
+    "title": "BeerSalesNFe 1.5.61.6",
+    "content": "🪲 Bug BS-1581 - Tag cBenef não está sendo informada",
+    "tags": ["BeerSalesNFe"]
+  },
+   {
+    "title": "Versão .61 BeerSales PDV",
+    "content": "🪲 Bug\nPDV-328 Destacar que a mensagem rejeitada da Nota Fiscal é da SEFAZ\nPDV-425 Falha no envio de e-mail da NFC-e pela opção \"Consultar NFC-e Emitida\" no PDV",
+    "tags": [
+      "BeerSales PDV"
+    ]
+  },
+  {
+    "title": "BeerSales Web",
+    "content": "BeerSales Web 1.9.0\n\nBug\nBSWEB-570 Sugestão de quantidade incorreta na transferência entre estoques\nBSWEB-571 Perda de seleção do item do menu (sidebar) ao executar ações vinculadas\nBSWEB-572 Pedido: Faturamento some da lista antes da confirmação de cancelamento da API\nBSWEB-573 Pedido: Transportador não pode ser alterado após faturamento\nBSWEB-588 [Hotfix] Ajustar labels no card informar pagamento das saídas financeiras\n\nHistória\nBSWEB-290 Implementar Configuração de \"Dias para o Retorno de Equipamentos\" no cadastro de Pedido\nBSWEB-450 Implementar \"loading\" ao clicar em botões de ação\nBSWEB-558 Exibir apenas abas relevantes conforme o status do pedido no cadastro\nBSWEB-562 Padronizar comportamento dos modais no cadastro de pedido para aguardar r",
+    "tags": [
+      "BeerSales Web"
+    ]
+  },
+  {
+    "title": "BeerSales 1.5.61.1 FinanceIntelligence 1.5.61.1",
+    "content": "🪲 Bug\nBS-1519 - Erro de \"Number is out of range\" na conversão de unidade de produto na tela de importação de nota fiscal\nBS-1561 - Erro de codificação Unicode ao importar arquivo OFX do Banco do Brasil na Conciliação Bancária",
+    "tags": [
+      "BeerSales",
+      "FinanceIntelligence"
+    ]
+  },
+  {
+    "title": "BeerSalesNfe 1.5.61.1",
+    "content": "📖 História\nBS-1549 - Criar configuração no emissor de NF-e para remover valor de ICMS ST e DIFAL da base de cálculo do Pis e Cofins",
+    "tags": [
+      "BeerSalesNfe"
+    ]
+  },
+  {
+    "title": "BeerSalesPDV 1.0.61.1",
+    "content": "🪲 Bug\nPDV-428 - Campo IE exibindo o CNPJ no PDF \"Conferência da Comanda\"",
+    "tags": [
+      "BeerSalesPDV"
+    ]
+  },
+  {
+    "title": "BeerSales 1.5.61.2",
+    "content": "🪲 Bug\ncorrigindo falha de download no relatório\n'Movimentos de Estoque Analítico'.",
+    "tags": [
+      "BeerSales"
+    ]
+  },
+  {
+    "title": "BeerSales 1.5.61.3",
+    "content": "🪲 Bug\nBS-1568 [Hotfix] Erro ao importar nota de fornecedor.",
+    "tags": [
+      "BeerSales"
+    ]
+  },
+  {
+    "title": "BeerSales 1.5.61.4",
+    "content": "🪲 Bug\nBS-1568 [Hotfix] Erro ao importar nota de fornecedor.\n📖 História\nBS-1564 [Hotfix] Enviar o complemento do endereço para a API Google na construção de rota da logística",
+    "tags": [
+      "BeerSales"
+    ]
+  },
+  {
+    "title": "BeerSales 1.5.61.5",
+    "content": "🪲 Bug\nBS-1575 Permitir caracteres especiais no campo de senha ao selecionar o certificado digital na NF-e\nBS-1577 Correção do arredondamento inconsistente no cálculo do ICMS CST 51 na devolução - Divergência entre vICMSOp e vICMS\n\nBeerSalesNFe.exe 1.5.61.5\n📖 História\nBS-1566 Ajustes na emissão de NF-e com benefícios fiscais",
+    "tags": [
+      "BeerSales"
+    ]
+  },
+  {
+    "title": "BeerSales App 2.7.0",
+    "content": "Bug\nBSAPP-80 Permitir entrada de estoque para produtos recém cadastrados\nBSAPP-132 Filtro avançado exibindo valor errado\nBSAPP-135 Desabilitar botão \"Assinar contrato de comodato\" se não há equipamento e sem saída de estoque no Pedido \n\nHistória\nBSAPP-171 Implementar Configuração de \"Dias para o Retorno de Equipamentos\" no cadastro de pedido\nBSAPP-210 Remover uso do header X-Ocultar-Pedido no app\nBSAPP-213 Implementar login com biometria no app\nBSAPP-218 Assinar digitalmente a entrega do pedido pelo app\nBSAPP-222 Exibir nome completo abaixo do apelido ao fazer pedido\nTarefaBSAPP-228 Whats New do App v2.7.0",
+    "tags": [
+      "BeerSales App"
+    ]
+  },
+  {
+    "title": "API BeerSales 1.14.0",
+    "content": "História\nBSAPI-702 Identificar Cidade e UF por Código IBGE nas rotas de Cliente e Pedido\nBSAPI-735 Criar rota adicional para assinatura do pedido\nBSAPI-740 Ajustar rotas para que enviem o nome completo do colaborador no lugar do apelido",
+    "tags": [
+      "API BeerSales"
+    ]
+  }
+]
